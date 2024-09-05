@@ -76,9 +76,9 @@ npx playwright show-report
     Playwright browser are not installed.
 
     ### Solution:
-
-    Press Ctrl+Shift+P to open the Command Palette in VSCode, type 'Playwright' and select 'Install Playwright Browsers'.
     ```
+    Press Ctrl+Shift+P to open the Command Palette in VSCode, type 'Playwright' and select 'Install Playwright Browsers'.
+   
     OR
     
     Command
