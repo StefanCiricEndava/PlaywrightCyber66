@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
-
 require('dotenv').config();
 
 export default defineConfig({
@@ -42,25 +41,24 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         storageState: '.auth/user.json',
+        viewport: { width: 1920, height: 1080 },
         launchOptions: {
           args: ['--start-maximized']
         }
       },
       dependencies: ['setup'],
     },
-
     {
       name: 'webkit',
       use: {
         ...devices['Desktop Safari'],
         storageState: '.auth/user.json',
+        viewport: { width: 1920, height: 1080 },
         launchOptions: {
           args: ['--start-maximized']
         }
       },
       dependencies: ['setup'],
     },
-
   ],
-
 });
