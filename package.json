@@ -1,0 +1,22 @@
+{
+  "name": "cyber64",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --headed --project=chromium",
+    "testui": "npx playwright test --ui --project=chromium",
+    "debug": "npx playwright test --headed --debug --project=chromium",
+    "webkit": "npx playwright test --headed --project=webkit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.5.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

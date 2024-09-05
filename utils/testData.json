@@ -1,0 +1,35 @@
+{
+    "credentials": {
+        "name": "Test",
+        "lastName": "Tester",
+        "email": "stefanboohoo@gmail.com",
+        "password": "Test123!"
+    },
+
+    "product1": {
+        "name": "KA270K",
+        "sku": 2116266,
+        "category": "Sanders",
+        "brand": "Black & Decker",
+        "price": 80.00,
+        "stock": 317
+    },
+
+    "product2": {
+        "name": "GSS 23 AE",
+        "sku": 4567175,
+        "category": "Sanders",
+        "brand": "Bosch",
+        "price": 125.00,
+        "stock": 88
+    },
+    
+    "product3": {
+        "name": "CD12CE",
+        "sku": 3881014,
+        "category": "Screwdrivers",
+        "brand": "Black & Decker",
+        "price": 79.00,
+        "stock": 36
+    }
+}
