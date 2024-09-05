@@ -29,7 +29,7 @@ This is my task for technical interview for Cyber66
 
 4. Install browsers
    ```
-   npm install @playwright/test@latest
+   npm playwright install
    ```
 
 ## SETTINGS
@@ -54,9 +54,9 @@ Run in debug mode with Playwright Inspector
 
 `npm run debug`
 
-`Run all the tests in webkit browser
+Run all the tests in webkit browser
 
-``npm run webkit`
+`npm run webkit`
 
 Ask for help
 
@@ -65,10 +65,9 @@ Ask for help
 
 ## REPORT
 
-```bash
-npx playwright show-report
-```
+Command for report
 
+npx playwright show-report
 
 ## Troubleshoting
 
@@ -77,11 +76,12 @@ npx playwright show-report
     Playwright browser are not installed.
 
     ### Solution:
-    ```bash
+
     Press Ctrl+Shift+P to open the Command Palette in VSCode, type 'Playwright' and select 'Install Playwright Browsers'.
     ```
     OR
     
-    ```
+    Command
+
     npx playwright install
     ```
