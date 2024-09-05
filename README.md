@@ -29,7 +29,7 @@ This is my task for technical interview for Cyber66
 
 4. Install browsers
    ```
-   npx playwright install
+   npm install @playwright/test@latest
    ```
 
 ## SETTINGS
