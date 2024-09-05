@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+const dotenv = require('dotenv');
 
 require('dotenv').config();
 
@@ -31,7 +32,6 @@ export default defineConfig({
       name: 'setup',
       testMatch: /.*auth\.setup\.ts/,
       use: {
-        
         launchOptions: {
           args: ['--start-maximized']
         }
@@ -42,7 +42,6 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         storageState: '.auth/user.json',
-        
         launchOptions: {
           args: ['--start-maximized']
         }
@@ -55,7 +54,6 @@ export default defineConfig({
       use: {
         ...devices['Desktop Safari'],
         storageState: '.auth/user.json',
-        baseURL: 'https://demo-next-sap-b2b-coveo.alokai.com/',
         launchOptions: {
           args: ['--start-maximized']
         }

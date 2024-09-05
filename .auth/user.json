@@ -1,0 +1,65 @@
+{
+  "cookies": [
+    {
+      "name": "vsf-locale",
+      "value": "en",
+      "domain": "demo-next-sap-b2b-coveo.alokai.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "NEXT_LOCALE",
+      "value": "en",
+      "domain": "demo-next-sap-b2b-coveo.alokai.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "vsf-currency",
+      "value": "USD",
+      "domain": "demo-next-sap-b2b-coveo.alokai.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "vsf-sap-token",
+      "value": "%7B%22access_token%22%3A%22qe6-5oRGaDtaUA0KEJ2GJVqnfwE%22%2C%22token_type%22%3A%22bearer%22%2C%22refresh_token%22%3A%22rx_KKjkPHAsR0Sx9QKdRawZeo2w%22%2C%22expires_in%22%3A516669%2C%22scope%22%3A%22basic%20extended%20openid%22%7D",
+      "domain": "demo-next-sap-b2b-coveo.alokai.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "vsf-user",
+      "value": "current",
+      "domain": "demo-next-sap-b2b-coveo.alokai.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "unified-cart-id",
+      "value": "00092054",
+      "domain": "demo-next-sap-b2b-coveo.alokai.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}
