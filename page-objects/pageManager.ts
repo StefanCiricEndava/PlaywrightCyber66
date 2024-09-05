@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
-import { MainPage } from '../page-objects/MainPage'
-import { SignUpLoginPage } from '../page-objects/SignUpLoginPage';
+import { MainPage } from '../page-objects/mainPage'
+import { SignUpLoginPage } from '../page-objects/signUpLoginPage';
 import { CartPage } from "./cartPage";
 import { ProductPage } from "./productPage";
 
