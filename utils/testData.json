@@ -31,5 +31,15 @@
         "brand": "Black & Decker",
         "price": 79.00,
         "stock": 36
+    },
+
+    "product4": {
+        "name": "BT-CD 14,4 2B",
+        "sku": 3794619,
+        "category": "Screwdrivers",
+        "brand": "Einhell",
+        "price": 35.00,
+        "stock": 58
     }
+
 }

@@ -9,9 +9,11 @@ export class CartPage extends HelperBase {
   readonly productPrice: Locator;
   readonly productTotal: Locator;
   readonly productQuantity: Locator;
+  readonly productRemoveButton: Locator
   readonly orderSummaryTotalItems: Locator;
   readonly orderSummaryTotalPrice: Locator;
   readonly goToCheckout: Locator;
+
 
   constructor(page: Page) {
     super(page);
@@ -19,13 +21,16 @@ export class CartPage extends HelperBase {
     this.cartIcon = page.getByTestId("cart-action");
     this.increaseButton = page.getByTestId("quantity-selector-increase-button");
     this.productTitle = page.getByTestId("cart-product-card-title");
-    this.productPrice = page
-      .getByTestId("cart-product-card-price")
-      .getByTestId("special-price");
+    this.productPrice = page.getByTestId("cart-product-card-price").getByTestId("special-price");
     this.productTotal = page.getByTestId("cart-product-card-total");
     this.productQuantity = page.getByTestId("quantity-selector-input");
+    this.productRemoveButton = page.getByTestId("cart-product-card-remove-btn")
     this.orderSummaryTotalItems = page.getByTestId("total-in-cart");
     this.orderSummaryTotalPrice = page.getByTestId("total");
     this.goToCheckout = page.getByTestId("go-to-checkout");
+  }
+
+  async removeProduct(){
+    await this.productRemoveButton.click()
   }
 }

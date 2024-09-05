@@ -65,7 +65,7 @@ Ask for help
 
 ## REPORT
 
-Command for report
+Command for HTML report
 
 npx playwright show-report
 
