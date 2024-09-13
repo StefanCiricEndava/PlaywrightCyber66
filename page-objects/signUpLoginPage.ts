@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test"
 
 export class SignUpLoginPage {
   readonly page: Page;
@@ -14,7 +14,7 @@ export class SignUpLoginPage {
   }
 
   /**
-   *
+   * This method should fill email and password and submit it
    * @param email
    * @param password
    */
@@ -23,4 +23,5 @@ export class SignUpLoginPage {
     await this.password.fill(password);
     await this.submitButton.click();
   }
+
 }

@@ -1,61 +1,59 @@
-import { test, expect } from "@playwright/test";
-import { PageManager } from "../page-objects/pageManager";
-import dataset from "../utils/testData.json";
+import { test, expect } from '../fixtures/PageObjectFixture'
+import { readCSV } from '../utils/csvReader';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto("/");
-});
-
-test("Alokai e2e test", async ({ page }) => {
-  const pm = new PageManager(page);
+test("Alokai e2e test", async ({ page, homePage, cartPage, productPage }) => {
+  
+  const dataArray = await readCSV('./ProductList.csv');
+  const productCategory = dataArray[3].category;
+  const productBrand = dataArray[3].brand
+  const productPrice = dataArray[3].price
+  const productName = dataArray[3].name
+  const productSku = dataArray[3].sku
 
   // On home page, search for items by category/name/brand
-  await pm.onHomePage().searchingForItems(dataset.product4.category);
-  await expect(page).toHaveURL("/search?search=" + dataset.product4.category);
-  await expect(pm.onHomePage().searchResults).toContainText(dataset.product4.category);
+  await homePage.searchingForItems(productCategory);
+  await expect(page).toHaveURL("/search?search=" + productCategory);
+  await expect(homePage.searchResults).toContainText(productCategory);
 
   // On filter section, for Brands, select product's brand
-  await pm.onHomePage().filterItemsByBrand(dataset.product4.brand);
+  await homePage.filterItemsByBrand(productBrand);
 
   // Assertation for previous product's brand selection
-  await expect(page.locator(`details[data-testid="accordion-item"] div label span input[value="${dataset.product4.brand}"]`)).toBeChecked();
+  await expect(page.locator(`details[data-testid="accordion-item"] div label span input[value="${productBrand}"]`)).toBeChecked();
 
   // On previous searched and filtered page, select your product
-  await pm.onHomePage().clickOnSpecificProduct(dataset.product4.name, dataset.product4.sku);
-  await page.waitForLoadState("networkidle");
+  await homePage.clickOnSpecificProduct(productName,productSku);
 
   // Assertation on product page to be sure that we selected right product
-  await expect(page.url()).toContain(`${dataset.product4.sku}?sku=${dataset.product4.sku}`);
-  await expect(pm.onProductPage().productName).toHaveText(dataset.product4.name);
-  await expect(pm.onProductPage().productPrice).toHaveText(`$${dataset.product4.price.toString()}.00`);
+  await expect(page.url()).toContain(`${productSku}?sku=${productSku}`);
+  await expect(productPage.productName).toHaveText(productName);
+  await expect(productPage.productPrice).toHaveText(`$${productPrice.toString()}`);
 
   // On product page, add product to the cart
-  await pm.onProductPage().clickOnAddToCartButton();
+  await productPage.clickOnAddToCartButton();
 
   // Assertation for adding product to cart
-  await expect(pm.onProductPage().notifications).toBeVisible();
-  await expect(pm.onProductPage().notifications).toContainText("Product has been added to the cart.");
+  await expect(productPage.notifications).toBeVisible();
+  await expect(productPage.notifications).toContainText("Product has been added to the cart.");
 
   // Click on cart Icon
-  await pm.onHomePage().clickOnCartIcon();
-  await page.waitForLoadState("networkidle");
+  await homePage.clickOnCartIcon();
 
   // Assertation to check that correct product is in cart
-  await expect(pm.onCartPage().productTitle).toContainText(dataset.product4.name);
-  await expect(pm.onCartPage().productPrice).toHaveText(`$${dataset.product4.price.toString()}.00`);
-  await expect(pm.onCartPage().productQuantity).toHaveValue("1");
+  await expect(cartPage.productTitle).toContainText(productName);
+  await expect(cartPage.productPrice).toHaveText(`$${productPrice.toString()}`);
+  await expect(cartPage.productQuantity).toHaveValue("1");
 
   // Icrease product quantity and check is the quantity and prace are correct
-  await pm.onCartPage().waitForNumberOfSeconds(3);
-  await pm.onCartPage().increaseProductQuantity();
+  await cartPage.increaseProductQuantity();
 
   // Assertation after increasing quantity and cart update 
-  await expect(pm.onCartPage().notifications).toBeVisible();
-  await expect(pm.onCartPage().notifications).toContainText("Cart updated.");
-  await expect(pm.onCartPage().productQuantity).toHaveValue("2");
-  await expect(pm.onCartPage().productTotal).toHaveText(`$${(dataset.product4.price * 2).toString()}.00`);
+  await expect(cartPage.notifications).toBeVisible();
+  await expect(cartPage.notifications).toContainText("Cart updated.");
+  await expect(cartPage.productQuantity).toHaveValue("2");
+  await expect(cartPage.productTotal).toContainText(`$${(productPrice * 2).toString()}`);
 
   // Removing previous selected product
-  await pm.onCartPage().removeProduct()
-  await expect(pm.onCartPage().notifications).toContainText("Cart updated.");
+  await cartPage.removeProduct()
+  await expect(cartPage.notifications).toContainText("Cart updated.");
 });

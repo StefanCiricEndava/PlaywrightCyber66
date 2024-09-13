@@ -1,23 +1,17 @@
-import { test as setup } from "@playwright/test";
-import { PageManager } from "../page-objects/pageManager";
-import dataset from "../utils/testData.json";
+import { faker } from '@faker-js/faker';
+import { test, expect } from '../fixtures/PageObjectFixture'
 
 const authFile = ".auth/user.json";
 
-setup("Authentication", async ({ page }) => {
-  const pm = new PageManager(page);
+test("Authentication", async ({ page, context, homePage, signUpLoginPage }) => {
 
-  await page.goto("/");
-  await pm.onHomePage().clickOnLoginIcon(); // or just with locator
-  await pm
-    .onLoginAndSignUpPage()
-    .fillLoginFormAndSubmit(
-      dataset.credentials.email,
-      dataset.credentials.password
-    );
-  await page.waitForURL(
-    "https://demo-next-sap-b2b-coveo.alokai.com/my-account/personal-data"
-  );
+  faker.seed(12);
+  const email = faker.internet.email().toLowerCase()
+  const password = faker.internet.password()+'!'
+
+  await homePage.clickOnLoginIcon(); 
+  await signUpLoginPage.fillLoginFormAndSubmit(email,password);
+  await page.waitForURL("https://demo-next-sap-b2b-coveo.alokai.com/my-account/personal-data");
 
   await page.context().storageState({ path: authFile });
 });
