@@ -3,7 +3,7 @@ This is my task for technical interview for Cyber66
 
 ## FRAMEWORK SETUP
  ### Prerequisites
- Node.js v21.5.0
+* Node.js v21.5.0
 
  ### IDE Visual Studio Code Extension
  
