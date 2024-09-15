@@ -27,7 +27,8 @@ test("Alokai e2e test", async ({ page, homePage, cartPage, productPage }) => {
   // Assertation on product page to be sure that we selected right product
   await expect(page.url()).toContain(`${productSku}?sku=${productSku}`);
   await expect(productPage.productName).toHaveText(productName);
-  await expect(productPage.productPrice).toHaveText(`$${productPrice.toString()}`);
+  const productPriceOnProductPage = await productPage.getProductPrice()
+  await expect(productPriceOnProductPage).toBe(parseFloat(productPrice));
 
   // On product page, add product to the cart
   await productPage.clickOnAddToCartButton();
@@ -41,8 +42,11 @@ test("Alokai e2e test", async ({ page, homePage, cartPage, productPage }) => {
 
   // Assertation to check that correct product is in cart
   await expect(cartPage.productTitle).toContainText(productName);
-  await expect(cartPage.productPrice).toHaveText(`$${productPrice.toString()}`);
-  await expect(cartPage.productQuantity).toHaveValue("1");
+  const productPriceInCart = await cartPage.getProductPrice()
+  await expect(productPriceInCart).toBe(parseFloat(productPrice));
+  const productQtyInCart = await cartPage.getProductQty()
+  await expect(productPriceInCart).toBe(parseFloat(productPrice));
+  await expect(productQtyInCart).toBe(1);
 
   // Icrease product quantity and check is the quantity and prace are correct
   await cartPage.increaseProductQuantity();
@@ -50,8 +54,10 @@ test("Alokai e2e test", async ({ page, homePage, cartPage, productPage }) => {
   // Assertation after increasing quantity and cart update 
   await expect(cartPage.notifications).toBeVisible();
   await expect(cartPage.notifications).toContainText("Cart updated.");
-  await expect(cartPage.productQuantity).toHaveValue("2");
-  await expect(cartPage.productTotal).toContainText(`$${(productPrice * 2).toString()}`);
+  const increasedProductQty = await cartPage.getProductQty()
+  await expect(increasedProductQty).toBe(productQtyInCart + 1);
+  const totalPrice = await cartPage.getTotalPrice()
+  await expect(totalPrice).toBe(parseFloat(productPrice)*increasedProductQty);
 
   // Removing previous selected product
   await cartPage.removeProduct()

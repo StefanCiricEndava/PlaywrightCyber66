@@ -14,4 +14,16 @@ export class ProductPage extends HelperBase {
     this.productPrice = page.getByTestId("price").getByTestId("special-price");
     this.productStock = page.getByTestId("quantity-selector-stock");
   }
+
+  async getProductPrice(): Promise<number> {
+    const priceText = await this.productPrice.textContent();
+    if (!priceText) {
+      throw new Error("Price text content is empty");
+    }
+    const price = parseFloat(priceText.replace("$", "").trim());
+    if (isNaN(price)) {
+      throw new Error("Failed to parse price");
+    }
+    return price;
+  }
 }
